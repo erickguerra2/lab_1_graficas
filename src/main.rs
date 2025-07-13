@@ -96,7 +96,7 @@ fn save_framebuffer_as_png(framebuffer: &FrameBuffer, filename: &str) {
     imgbuf.save(filename).expect("Error al guardar PNG");
 }
 
-// Bresenham para líneas con color
+// Bresenham
 fn line(framebuffer: &mut FrameBuffer, start: Vector2, end: Vector2, color: Color) {
     let mut x0 = start.x as i32;
     let mut y0 = start.y as i32;
@@ -133,7 +133,6 @@ fn draw_polygon_edges(framebuffer: &mut FrameBuffer, poly: &[Vector2], color: Co
     }
 }
 
-// Punto dentro de polígono (algoritmo ray casting)
 fn point_in_polygon(point: Vector2, polygon: &[Vector2]) -> bool {
     let mut inside = false;
     let mut j = polygon.len() - 1;
@@ -150,7 +149,6 @@ fn point_in_polygon(point: Vector2, polygon: &[Vector2]) -> bool {
     inside
 }
 
-// Rellena polígono sólido con color
 fn fill_polygon(framebuffer: &mut FrameBuffer, poly: &[Vector2], color: Color) {
     let min_y = poly.iter().map(|v| v.y as i32).min().unwrap_or(0);
     let max_y = poly.iter().map(|v| v.y as i32).max().unwrap_or(0);
@@ -166,7 +164,6 @@ fn fill_polygon(framebuffer: &mut FrameBuffer, poly: &[Vector2], color: Color) {
     }
 }
 
-// Rellena polígono con agujero con colores (relleno y agujero)
 fn fill_polygon_with_hole(
     framebuffer: &mut FrameBuffer,
     outer: &[Vector2],
